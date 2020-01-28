@@ -26,7 +26,7 @@ docker rm -f     nginx        #当nginx镜像修改的时候需要这个指令
 
 1.如果之前创建了相同子网的网络 要先删掉之前的,否则冲突
 2.如果启动的时候指定了-p 网桥名称。那么停止或删除时也要docker-compose -p 网桥名称 stop
-
+3.启动前，请配置好nginx的配置文件，以及对应的项目clone到wwwroot下面额
 ...
 
 
