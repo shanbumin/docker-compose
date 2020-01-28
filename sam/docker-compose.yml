@@ -1,0 +1,112 @@
+version: "3"
+services:
+  #php-nginx服务
+  #本地端口:容器端口
+  php-nginx:
+    container_name: php-nginx
+    image: shanbumin/php:7.1-nginx-alpine3.10
+    ports:
+      - 8000:80 #test
+      - 8001:80 #rhca_multi_platform
+    volumes:
+       - ./nginx/conf/conf.d:/etc/nginx/conf.d
+       - ./wwwroot/:/var/www/:cached
+    working_dir: /var/www
+    restart: always
+    networks:
+       moka:
+         ipv4_address: 10.33.0.2
+  #php cli模式
+  php-cli:
+    container_name: php-cli
+    image: shanbumin/php:7.1-cli-alpine3.10
+    #command: ["tail","-f","/dev/null"]
+    command: ["/usr/sbin/crond","-f"]
+    working_dir: /var/www
+    volumes:
+       - ./wwwroot/:/var/www/
+    restart: always
+    networks:
+       moka:
+         ipv4_address: 10.33.0.10
+  #mysqld服务
+  mysqld:
+     container_name: mysql
+     image: shanbumin/mysql:5.7-stretch
+     ports:
+       - 3306:3306
+     volumes:
+       - ./mysql/5.7/data:/var/lib/mysql
+     environment:
+       - MYSQL_ROOT_PASSWORD=root
+     restart: always
+     networks:
+       moka:
+         ipv4_address: 10.33.0.5
+  #redis服务
+  redis:
+    container_name: redis
+    image: shanbumin/redis:4.0-alpine3.8
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/4.0/data:/data
+    restart: always
+    networks:
+      moka:
+        ipv4_address: 10.33.0.110
+  #mongod服务
+  mongod:
+    container_name: mongo
+    image: shanbumin/mongo:3.4-jessie
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/3.4/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+    networks:
+      moka:
+        ipv4_address: 10.33.0.112
+  #rabbitmq
+  rabbitmq:
+    container_name: rabbitmq
+    image: shanbumin/rabbitmq:3.7-management-alpine3.8
+    ports:
+      - "15672:15672"
+    hostname: node001
+    volumes:
+      - ./rabbitmq/3.7/data:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: EGALBOSXYONYFFPBFFLT
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+    restart: always
+    networks:
+      moka:
+        ipv4_address: 10.33.0.114
+ #etcd
+  etcd:
+    container_name: etcd
+    image: shanbumin/etcd:3.3.12
+    environment:
+      ETCDCTL_API: 3
+    command: ["/usr/local/bin/etcd","--listen-client-urls","http://0.0.0.0:2379","--advertise-client-urls","http://0.0.0.0:2379"]
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    volumes:
+      - ./etcd/3.3.12/data:/default.etcd
+    restart: always
+    networks:
+      moka:
+        ipv4_address: 10.33.0.116
+#自定义虚拟网络
+networks:
+  moka:
+     driver: bridge
+     ipam:
+       config:
+         - subnet: 10.33.0.0/16
