@@ -1,13 +1,13 @@
 version: "3"
 services:
   #php-nginx服务
-  #本地端口:容器端口
+  #本地端口:容器端口 因为我们是一个容器跑多个项目,所以容器内端口也不能相互冲突
   php-nginx:
     container_name: php-nginx
     image: shanbumin/php:7.1-nginx-alpine3.10
     ports:
       - 8000:80 #test
-      - 8001:80 #rhca_multi_platform
+      - 8001:81 #rhca_multi_platform
     volumes:
        - ./nginx/conf/conf.d:/etc/nginx/conf.d
        - ./wwwroot/:/var/www/:cached
