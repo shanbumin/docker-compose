@@ -1,0 +1,16 @@
+This sample Docker Compose file brings up a three-node Elasticsearch cluster. Node es01 listens on localhost:9200 and es02 and es03 talk to es01 over a Docker network.
+
+The Docker named volumes data01, data02, and data03 store the node data directories so the data persists across restarts. If they don’t already exist, docker-compose creates them when you bring up the cluster.
+
+
+
+1.Run docker-compose to bring up the cluster:
+
+docker-compose up
+
+2.Submit a _cat/nodes request to see that the nodes are up and running:
+
+curl -X GET "localhost:9200/_cat/nodes?v&pretty"
+
+
+
