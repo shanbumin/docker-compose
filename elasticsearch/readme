@@ -2,15 +2,23 @@ This sample Docker Compose file brings up a three-node Elasticsearch cluster. No
 
 The Docker named volumes data01, data02, and data03 store the node data directories so the data persists across restarts. If they don’t already exist, docker-compose creates them when you bring up the cluster.
 
+-------------------------------------------------------------------------------
+1.配置内存至少4个G
 
-
-1.Run docker-compose to bring up the cluster:
+2.Run docker-compose to bring up the cluster:
 
 docker-compose up
 
-2.Submit a _cat/nodes request to see that the nodes are up and running:
+3.Submit a _cat/nodes request to see that the nodes are up and running:
 
 curl -X GET "localhost:9200/_cat/nodes?v&pretty"
 
+ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+172.18.0.2           35          97  50    3.63    1.72     0.65 dilm      -      es03
+172.18.0.3           31          97  50    3.63    1.72     0.65 dilm      -      es01
+172.18.0.4           37          97  51    3.63    1.72     0.65 dilm      *      es02
 
 
+-------------------------------------------------------------------------------
+
+要停止集群，请运行docker-compose down。 当您使用docker-compose up重新启动集群时，将保留并加载Docker卷中的数据。 要在关闭群集时删除数据卷，请指定-v选项：docker-compose down -v。
