@@ -116,6 +116,7 @@ services:
     image: shanbumin/rabbitmq:3.7-management-alpine3.8
     ports:
       - "15672:15672"
+      - "5672:5672"
     hostname: node001
     volumes:
       - ./rabbitmq/3.7/data:/var/lib/rabbitmq
