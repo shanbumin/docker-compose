@@ -156,6 +156,19 @@ services:
     networks:
       moka:
         ipv4_address: 10.33.0.116
+ #gogs
+  gogs:
+    container_name: gogs
+    image: gogs/gogs:latest
+    ports:
+      - "10022:22"
+      - "10080:3000"
+    volumes:
+      - ./gogs/data:/data
+    restart: always
+    networks:
+      moka:
+        ipv4_address: 10.33.0.120
 #自定义虚拟网络
 networks:
   moka:
