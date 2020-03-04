@@ -8,6 +8,7 @@ services:
     ports:
       - 8000:80 #test
       - 8001:81 #rhca_multi_platform
+      - 8002:82 #novel_friends
     volumes:
        - ./nginx/conf/conf.d:/etc/nginx/conf.d
        - ./wwwroot/:/var/www/:cached
@@ -106,6 +107,8 @@ services:
       - 5601:5601
     environment:
       ELASTICSEARCH_HOSTS: http://10.33.0.111:9200
+    depends_on:
+      - elasticsearch
     restart: always
     networks:
       moka:
