@@ -11,7 +11,7 @@ services:
       - 8002:82 #novel_friends
     volumes:
        - ./nginx/conf/conf.d:/etc/nginx/conf.d
-       - ./wwwroot/:/var/www/:cached
+       - ./wwwroot/:/var/www/
     working_dir: /var/www
     restart: always
     networks:
