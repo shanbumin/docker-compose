@@ -9,6 +9,9 @@ services:
       - 8000:80 #test
       - 8001:81 #rhca_multi_platform
       - 8002:82 #novel_friends
+      - 8003:83   #mini_short_video_platform
+      - 8004:84  #WeDemo
+      - 8005:85  #new_typer_api
     volumes:
        - ./nginx/conf/conf.d:/etc/nginx/conf.d
        - ./wwwroot/:/var/www/

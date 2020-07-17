@@ -18,8 +18,8 @@ docker-compose down          #当启动部分失败的时候，则将之前的�
                              #Stop and remove containers, networks, images, and volumes
 docker-compose  restart nginx #当配置文件修改的时候需要这个指令即可
 docker rm -f     nginx        #当nginx镜像修改的时候需要这个指令
-
-
+#或者
+docker-compose restart php-nginx
 
 
 三.注意事项
