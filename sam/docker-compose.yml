@@ -12,6 +12,7 @@ services:
       - 8003:83   #mini_short_video_platform
       - 8004:84  #WeDemo
       - 8005:85  #new_typer_api
+      - 8006:86  #mid_admin
     volumes:
        - ./nginx/conf/conf.d:/etc/nginx/conf.d
        - ./wwwroot/:/var/www/
