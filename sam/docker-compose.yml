@@ -13,6 +13,7 @@ services:
       - 8004:84  #WeDemo
       - 8005:85  #new_typer_api
       - 8006:86  #mid_admin
+      - 8007:87  #infrastructure
     volumes:
        - ./nginx/conf/conf.d:/etc/nginx/conf.d
        - ./wwwroot/:/var/www/
