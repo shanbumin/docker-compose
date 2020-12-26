@@ -1,6 +1,7 @@
 version: '3'
 services:
   etcd1:
+    container_name: etcd1
     image: "shanbumin/etcd:3.3.12"
     environment:
       ETCDCTL_API: 3
@@ -22,7 +23,10 @@ services:
     working_dir: /etcd-data
     restart: always
   etcd2:
+    container_name: etcd2
     image: "shanbumin/etcd:3.3.12"
+    environment:
+      ETCDCTL_API: 3
     entrypoint: /usr/local/bin/etcd
     command:
       - '--name=etcd2'
@@ -41,7 +45,10 @@ services:
     working_dir: /etcd-data
     restart: always
   etcd3:
+    container_name: etcd3
     image: "shanbumin/etcd:3.3.12"
+    environment:
+      ETCDCTL_API: 3
     entrypoint: /usr/local/bin/etcd
     command:
       - '--name=etcd3'
