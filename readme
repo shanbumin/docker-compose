@@ -4,7 +4,7 @@
    3.每个开发人员在该仓库中以自己的名字汉语拼音全拼命名目录,在里面编排自己的本地开发环境(除了基础镜像以及网段必须一致之外,其余可以自由拓展)
    4.学习文档 https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples
    5.所有的项目请git clone到wwwroot下面,按照组织分好
-   ...未完待续
+   6.如果启动不起来，请看docker设置允许的cup以及内存是否充足。
 
 
 
