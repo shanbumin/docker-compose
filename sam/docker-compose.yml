@@ -2,39 +2,39 @@ version: "3"
 services:
   #php-nginx服务
   #本地端口:容器端口 因为我们是一个容器跑多个项目,所以容器内端口也不能相互冲突
-  php-nginx:
-    container_name: php-nginx
-    image: shanbumin/php:7.1-nginx-alpine3.10
-    ports:
-      - 8000:80 #test
-      - 8001:81 #rhca_multi_platform
-      - 8002:82 #novel_friends
-      - 8003:83   #mini_short_video_platform
-      - 8004:84  #WeDemo
-      - 8005:85  #new_typer_api
-      - 8006:86  #mid_admin
-      - 8007:87  #infrastructure
-    volumes:
-       - ./nginx/conf/conf.d:/etc/nginx/conf.d
-       - ./wwwroot/:/var/www/
-    working_dir: /var/www
-    restart: always
-    networks:
-       moka:
-         ipv4_address: 10.33.0.2
+  # php-nginx:
+  #   container_name: php-nginx
+  #   image: shanbumin/php:7.1-nginx-alpine3.10
+  #   ports:
+  #     - 8000:80 #test
+  #     - 8001:81 #rhca_multi_platform
+  #     - 8002:82 #novel_friends
+  #     - 8003:83   #mini_short_video_platform
+  #     - 8004:84  #WeDemo
+  #     - 8005:85  #new_typer_api
+  #     - 8006:86  #mid_admin
+  #     - 8007:87  #infrastructure
+  #   volumes:
+  #      - ./nginx/conf/conf.d:/etc/nginx/conf.d
+  #      - ./wwwroot/:/var/www/
+  #   working_dir: /var/www
+  #   restart: always
+  #   networks:
+  #      moka:
+  #        ipv4_address: 10.33.0.2
   #php-golang
-  php-golang:
-    container_name: php-golang
-    image: shanbumin/php:7.1-go-alpine3.10
-    command: ["/usr/sbin/crond","-f"]
-    volumes:
-      - $GOPATH:/go
-      - ./wwwroot/:/var/www/:cached
-    working_dir: /var/www
-    restart: always
-    networks:
-      moka:
-        ipv4_address: 10.33.0.3
+  # php-golang:
+  #   container_name: php-golang
+  #   image: shanbumin/php:7.1-go-alpine3.10
+  #   command: ["/usr/sbin/crond","-f"]
+  #   volumes:
+  #     - $GOPATH:/go
+  #     - ./wwwroot/:/var/www/:cached
+  #   working_dir: /var/www
+  #   restart: always
+  #   networks:
+  #     moka:
+  #       ipv4_address: 10.33.0.3
   #php cli模式
   php-cli:
     container_name: php-cli
@@ -119,35 +119,35 @@ services:
       moka:
         ipv4_address: 10.33.0.113
   #rabbitmq
-  rabbitmq:
-    container_name: rabbitmq
-    image: shanbumin/rabbitmq:3.7-management-alpine3.8
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    hostname: node001
-    volumes:
-      - ./rabbitmq/3.7/data:/var/lib/rabbitmq
-    environment:
-      RABBITMQ_ERLANG_COOKIE: EGALBOSXYONYFFPBFFLT
-      RABBITMQ_DEFAULT_USER: root
-      RABBITMQ_DEFAULT_PASS: root
-    restart: always
-    networks:
-      moka:
-        ipv4_address: 10.33.0.114
+  # rabbitmq:
+  #   container_name: rabbitmq
+  #   image: shanbumin/rabbitmq:3.7-management-alpine3.8
+  #   ports:
+  #     - "15672:15672"
+  #     - "5672:5672"
+  #   hostname: node001
+  #   volumes:
+  #     - ./rabbitmq/3.7/data:/var/lib/rabbitmq
+  #   environment:
+  #     RABBITMQ_ERLANG_COOKIE: EGALBOSXYONYFFPBFFLT
+  #     RABBITMQ_DEFAULT_USER: root
+  #     RABBITMQ_DEFAULT_PASS: root
+  #   restart: always
+  #   networks:
+  #     moka:
+  #       ipv4_address: 10.33.0.114
  #consul
-  consul:
-    container_name: consul
-    image: consul:1.4.5
-    command: ["agent","-server","-bootstrap-expect=1","-ui","-bind=0.0.0.0","-client=0.0.0.0"]
-    ports:
-      - "8500:8500"
-      - "8600:8600"
-    restart: always
-    networks:
-      moka:
-        ipv4_address: 10.33.0.115
+  # consul:
+  #   container_name: consul
+  #   image: consul:1.4.5
+  #   command: ["agent","-server","-bootstrap-expect=1","-ui","-bind=0.0.0.0","-client=0.0.0.0"]
+  #   ports:
+  #     - "8500:8500"
+  #     - "8600:8600"
+  #   restart: always
+  #   networks:
+  #     moka:
+  #       ipv4_address: 10.33.0.115
  #etcd
   etcd:
     container_name: etcd
@@ -165,18 +165,18 @@ services:
       moka:
         ipv4_address: 10.33.0.116
  #gogs
-  gogs:
-    container_name: gogs
-    image: gogs/gogs:latest
-    ports:
-      - "10022:22"
-      - "10080:3000"
-    volumes:
-      - ./gogs/data:/data
-    restart: always
-    networks:
-      moka:
-        ipv4_address: 10.33.0.120
+  # gogs:
+  #   container_name: gogs
+  #   image: gogs/gogs:latest
+  #   ports:
+  #     - "10022:22"
+  #     - "10080:3000"
+  #   volumes:
+  #     - ./gogs/data:/data
+  #   restart: always
+  #   networks:
+  #     moka:
+  #       ipv4_address: 10.33.0.120
 #自定义虚拟网络
 networks:
   moka:
