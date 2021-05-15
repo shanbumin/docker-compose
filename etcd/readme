@@ -1,7 +1,7 @@
 
 参数介绍：
 1. data-dir 指定节点的数据存储目录，这些数据包括节点ID，集群ID，集群初始化配置，Snapshot文件，若未指定—wal-dir，还会存储WAL文件；
-2. wal-dir 指定节点的was文件的存储目录，若指定了该参数，wal文件会和其他数据文件分开存储。
+2. wal-dir 指定节点的wal文件的存储目录，若指定了该参数，wal文件会和其他数据文件分开存储。
 3. name 节点名称
 4. initial-advertise-peer-urls 告知集群其他节点url.
 5. listen-peer-urls 监听URL，用于与其他节点通讯
