@@ -38,7 +38,7 @@ services:
   #php cli模式
   php-cli:
     container_name: php-cli
-    image: shanbumin/php:7.1-cli-alpine3.10
+    image: shanbumin/php:7.1-cli-alpine3.10-v2
     #command: ["tail","-f","/dev/null"]
     command: ["/usr/sbin/crond","-f"]
     working_dir: /var/www
