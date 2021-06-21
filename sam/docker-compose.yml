@@ -177,6 +177,39 @@ services:
   #   networks:
   #     moka:
   #       ipv4_address: 10.33.0.120
+ #zookeeper
+  # zookeeper:
+  #   container_name: zookeeper
+  #   image: wurstmeister/zookeeper
+  #   ports:
+  #     - "2181:2181"
+  #   volumes:
+  #     - ./zookeeper/data:/data
+  #   restart: always
+  #   networks:
+  #     moka:
+  #       ipv4_address: 10.33.0.121
+ #kafka
+  # kafka:
+  #   container_name: kafka
+  #   image: wurstmeister/kafka:2.13-2.7.0
+  #   environment:
+  #     KAFKA_BROKER_ID: 0
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://10.33.0.122:9092
+  #     KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_CREATE_TOPICS: "test:1:1"
+  #   build: .
+  #   ports:
+  #     - "9092:9092"
+  #   volumes:
+  #     - ./kafka/logs:/kafka
+  #   depends_on:
+  #     - zookeeper
+  #   restart: always
+  #   networks:
+  #     moka:
+  #       ipv4_address: 10.33.0.122
 #自定义虚拟网络
 networks:
   moka:
