@@ -20,7 +20,8 @@ docker-compose  restart nginx #当配置文件修改的时候需要这个指令�
 docker rm -f     nginx        #当nginx镜像修改的时候需要这个指令
 #或者
 docker-compose restart php-nginx
-
+#单独构建
+docker-compose build --no-cache php-nginx
 
 三.注意事项
 
